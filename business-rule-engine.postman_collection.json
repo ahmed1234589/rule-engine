@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "2dd373e5-e12f-4201-917b-21cbc6555124",
+		"name": "Business Rule Engine",
+		"description": "Demo collection for rule engine project (CRUD, engine execution)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36750208"
+	},
+	"item": [
+		{
+			"name": "List Business Rules",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/rules",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"rules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Business Rule",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Test Rule\",\n    \"ruleType\": \"ENRICHMENT\",\n    \"condition\": \"input.direction.equals(\\\"inbound\\\"\",\n    \"action\": \"output.setStatus(\\\"PROCESSED\\\")\",\n    \"priority\": 5,\n    \"enabled\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/rules",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"rules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Business Rule",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Updated Rule\",\n    \"ruleType\": \"ENRICHMENT\",\n    \"condition\": \"input.getDirection().equals(\\\"inbound\\\")\",\n    \"action\": \"output.setReference('HIGH-AMOUNT')\",\n    \"priority\": 10,\n    \"enabled\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/rules/19",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"rules",
+						"19"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Business Rule",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/rules/19",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"rules",
+						"19"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Payment Transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Payment Transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"direction\": \"inbound\",\n    \"amount\": 1500.0,\n    \"currency\": \"USD\",\n    \"status\": \"NEW\",\n    \"reference\": \"REF-2000\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Payment Transaction",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"direction\": \"outbound\",\n    \"amount\": 780.0,\n    \"currency\": \"EUR\",\n    \"status\": \"UPDATED\",\n    \"reference\": \"REF-8899\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/transactions/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transactions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Payment Transaction",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/transactions/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transactions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Run Rule Engine",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"direction\": \"inbound\",\n    \"amount\": 5000.00,\n    \"currency\": \"USD\",\n    \"status\": \"PENDING\",\n    \"reference\": \"NEW-REF\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/engine/run",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"engine",
+						"run"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Run Rule Engine on DB",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/engine/runOnDB",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"engine",
+						"runOnDB"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
